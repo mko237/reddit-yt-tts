@@ -1,0 +1,4 @@
+# Tesseract install page:
+https://tesseract-ocr.github.io/tessdoc/Installation.html
+`sudo apt install tesseract-ocr`
+`sudo apt install libtesseract-dev`

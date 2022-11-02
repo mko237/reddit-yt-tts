@@ -9,6 +9,7 @@ jupyterlab = "*"
 moviepy = "*"
 pygame = "*"
 opencv-python = "*"
+pytesseract = "*"
 
 [dev-packages]
 
