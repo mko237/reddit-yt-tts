@@ -10,6 +10,10 @@ moviepy = "*"
 pygame = "*"
 opencv-python = "*"
 pytesseract = "*"
+httplib2 = "*"
+google-api-python-client = "*"
+oauth2client = "*"
+praw = "*"
 
 [dev-packages]
 
