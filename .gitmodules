@@ -1,0 +1,6 @@
+[submodule "nix-tts"]
+	path = nix-tts
+	url = https://github.com/rendchevi/nix-tts
+[submodule "tortoise-tts"]
+	path = tortoise-tts
+	url = https://github.com/neonbjb/tortoise-tts
