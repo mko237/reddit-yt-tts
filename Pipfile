@@ -3,6 +3,21 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[[source]]
+url = "https://download.pytorch.org/whl/cpu"
+verify_ssl = true
+name = "downloadpytorch"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cpu"
+verify_ssl = true
+name = "downloadpytorch"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cpu"
+verify_ssl = true
+name = "downloadpytorch"
+
 [packages]
 selenium = "*"
 jupyterlab = "*"
@@ -14,6 +29,17 @@ httplib2 = "*"
 google-api-python-client = "*"
 oauth2client = "*"
 praw = "*"
+numpy = "*"
+onnxruntime = "==1.7.0"
+phonemizer = "==2.2.1"
+nix = {editable = true, path = "./nix-tts"}
+torch = {version = "*", index = "downloadpytorch"}
+torchvision = {version = "*", index = "downloadpytorch"}
+torchaudio = {version = "*", index = "downloadpytorch"}
+cast-control = "==0.10.11"
+typing-extensions = "*"
+progressbar = "*"
+youtube-dl = "*"
 
 [dev-packages]
 
