@@ -41,6 +41,7 @@ typing-extensions = "*"
 progressbar = "*"
 youtube-dl = "*"
 pdbpp = "*"
+pyyaml = "*"
 
 [dev-packages]
 
