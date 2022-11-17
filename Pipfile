@@ -40,6 +40,8 @@ cast-control = "==0.10.11"
 typing-extensions = "*"
 progressbar = "*"
 youtube-dl = "*"
+pdbpp = "*"
+pyyaml = "*"
 
 [dev-packages]
 
