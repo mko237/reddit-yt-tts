@@ -82,12 +82,13 @@ def get_authenticated_service(args):
     scope=YOUTUBE_UPLOAD_SCOPE,
     message=MISSING_CLIENT_SECRETS_MESSAGE)
 
-  storage = Storage("%s-oauth2.json" % sys.argv[0])
+  storage = Storage("oauth2.json")
   credentials = storage.get()
 
   if credentials is None or credentials.invalid:
     #flags=argparser.parse_args(args=[]) #mkm
     credentials = run_flow(flow, storage, args)
+  
 
   return build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
     http=credentials.authorize(httplib2.Http()))
@@ -127,10 +128,15 @@ def initialize_upload(youtube, options):
     media_body=MediaFileUpload(options.file, chunksize=-1, resumable=True)
   )
 
-  resumable_upload(insert_request)
+  video_id = resumable_upload(insert_request)
+    
+  if options.thumbnail:
+    response = youtube.thumbnails().set(videoId=video_id,media_body=options.thumbnail,media_mime_type="image/png")
+    print(f"thumbnail upload response:\n {vars(response)}")
 
 # This method implements an exponential backoff strategy to resume a
 # failed upload.
+    
 def resumable_upload(insert_request):
   response = None
   error = None
@@ -142,6 +148,7 @@ def resumable_upload(insert_request):
       if response is not None:
         if 'id' in response:
           print("Video id '%s' was successfully uploaded." % response['id'])
+          return response['id']          
         else:
           exit("The upload failed with an unexpected response: %s" % response)
     except HttpError as e:
