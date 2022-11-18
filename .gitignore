@@ -2,4 +2,5 @@
 *.mp3
 *.png
 *.wav
+.ipynb_checkpoints/*
 assets/*
