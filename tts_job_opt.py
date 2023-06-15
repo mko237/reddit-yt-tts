@@ -10,7 +10,7 @@ import time
 
 class TTSOPT(TextToSpeech):
 
-    @profile
+    
     def __init__(self, autoregressive_batch_size=None, models_dir=MODELS_DIR, enable_redaction=True, device=None):
         """
         Constructor
@@ -107,7 +107,7 @@ class TTSOPT(TextToSpeech):
         else:
             return auto_latent, diffusion_latent
 
-    @profile
+    
     def get_conditioning_latents(self, voice_samples, return_mels=False):
         """
         Transforms one or more voice_samples into a tuple (autoregressive_conditioning_latent, diffusion_conditioning_latent).
@@ -151,7 +151,7 @@ class TTSOPT(TextToSpeech):
         else:
             return auto_latent, diffusion_latent
 
-    @profile
+    
     def tts_with_preset(self, text, preset='fast', **kwargs):
         """
         Calls TTS with one of a set of preset generation parameters. Options:
@@ -175,7 +175,7 @@ class TTSOPT(TextToSpeech):
         settings.update(kwargs) # allow overriding of preset settings with kwargs
         return self.tts(text, **settings)
 
-    @profile
+    
     def tts(self, text, voice_samples=None, conditioning_latents=None, k=1, verbose=True, use_deterministic_seed=None,
             return_deterministic_state=False,
             # autoregressive generation parameters follow
@@ -360,7 +360,7 @@ class TTSOPT(TextToSpeech):
             else:
                 return res
 
-@profile
+
 def exec_tts(tts_text,output_path,selected_voice="train_empire"):
     #tts = TextToSpeech(models_dir=MODELS_DIR)
     print(f"Current device: {tts.device}")
@@ -388,25 +388,25 @@ def exec_tts(tts_text,output_path,selected_voice="train_empire"):
     full_audio = torch.cat(all_parts, dim=-1)
     torchaudio.save(os.path.join(output_path), full_audio, 24000)
 
-print("initializing tts api")
-tts = TTSOPT(models_dir=MODELS_DIR)
+# print("initializing tts api")
+# tts = TTSOPT(models_dir=MODELS_DIR)
 
-#caching function results to increase speed of tts jobs
-print("populating cache")
-voice_samples, conditioning_latents = load_voices(["train_empire"])
-tts.get_conditioning_latents_to_cache(voice_samples, return_mels=True)
+# #caching function results to increase speed of tts jobs
+# print("populating cache")
+# voice_samples, conditioning_latents = load_voices(["train_empire"])
+# tts.get_conditioning_latents_to_cache(voice_samples, return_mels=True)
 
 
-time_s = time.time()
-print("starting. first..")
-exec_tts("test audio","test2.wav")
-time_e = time.time()
-time_duration = time_e - time_s
-print(f"first completed took {time_duration} secs")
+# time_s = time.time()
+# print("starting. first..")
+# exec_tts("test audio","test2.wav")
+# time_e = time.time()
+# time_duration = time_e - time_s
+# print(f"first completed took {time_duration} secs")
 
-time_s = time.time()
-print("starting second...")
-exec_tts("test audio","test3.wav")
-time_e = time.time()
-time_duration = time_e - time_s
-print(f"second completed took {time_duration} secs")
+# time_s = time.time()
+# print("starting second...")
+# exec_tts("test audio","test3.wav")
+# time_e = time.time()
+# time_duration = time_e - time_s
+# print(f"second completed took {time_duration} secs")
