@@ -1,6 +1,7 @@
 import os
 import zipfile
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 #source https://botproxy.net/docs/how-to/setting-chromedriver-proxy-auth-with-selenium-using-python/
 
 def build_proxy_extension(host,port,user,password,pluginfile='proxy_auth_plugin.zip'):
@@ -77,9 +78,14 @@ def get_chromedriver(proxy_file=None, headless=True,path=None):
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')    
+    #driver = webdriver.Chrome(
+    #    os.path.join(path, 'chromedriver'),
+    #    chrome_options=chrome_options)
+
+    service = Service(executable_path=os.path.join(path, 'chromedriver'))
     driver = webdriver.Chrome(
-        os.path.join(path, 'chromedriver'),
-        chrome_options=chrome_options)
+        service=service,
+        options=chrome_options)
 
     return driver
 

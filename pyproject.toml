@@ -1,0 +1,27 @@
+[project]
+name = "reddit-yt-tts"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+"selenium",
+"jupyterlab",
+"moviepy",
+"pygame",
+"opencv-python",
+"pytesseract",
+"httplib2",
+"google-api-python-client",
+"oauth2client",
+"praw",
+"numpy",
+	#"onnxruntime==1.7.0",
+"phonemizer==2.2.1",
+"cast-control==0.10.11",
+"typing-extensions",
+"progressbar",
+"youtube-dl",
+"pdbpp",
+"pyyaml"
+]
